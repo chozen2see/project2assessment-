@@ -17,9 +17,13 @@ const Todo = require('./models/todo');
  **********************/
 
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb://localhost:27017/todoapp';
+const MONGODO_URI =
+  process.env.MONGODO_URI || 'mongodb://localhost:27017/todoapp';
 
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(MONGODO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 mongoose.connection.once('open', () => {
   console.log('connected to mongo');
 });
