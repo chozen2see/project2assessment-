@@ -21,10 +21,14 @@ const mongoose = require('mongoose');
 const MONGODO_URI =
   process.env.MONGODO_URI || 'mongodb://localhost:27017/todoapp';
 
-mongoose.connect(MONGODO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose
+  .connect(MONGODO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('Database Connected'))
+  .catch((err) => console.log(err));
+
 mongoose.connection.once('open', () => {
   console.log('connected to mongo');
 });
